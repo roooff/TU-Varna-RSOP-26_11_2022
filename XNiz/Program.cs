@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Numerics;
 
 namespace XNiz
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            uint T = uint.Parse(Console.ReadLine());
+            for (int i = 0; i < T; i++)
+            {
+                uint S = uint.Parse(Console.ReadLine());
+                var x = BigInteger.Parse(Console.ReadLine());
+            }
         }
     }
 }

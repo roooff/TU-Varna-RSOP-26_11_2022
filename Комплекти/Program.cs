@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 
 namespace Комплекти
 {
@@ -10,26 +12,24 @@ namespace Комплекти
             //образувани чрез избор на P на брой подаръка (без повторения)
             //от всичките X видове подаръка и B на брой хартии (без повторения) от всичките Y видове хартии.
 
-            uint tests = 0;
-            uint quantityPerPurcahse; // Does not repeat
-            uint giftwrappers;
-            uint typesOfPurchases;// Does not repeat
-            uint typesOfGiftWrappers;// Does not repeat
+            int tests = int.Parse(Console.ReadLine());
+            // Does not repeat
+            int[] all = Console.ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse).ToArray();
+            int quantityPerPurcahse = all[0]; // Does not repeat
+            int giftwrappers = all[1];
+            int typesOfPurchases = all[2];// Does not repeat
+            int typesOfGiftWrappers = all[3];// Does not repeat
+
             for (int i = 0; i < tests; i++)
             {
-                quantityPerPurcahse = uint.Parse(Console.ReadLine());
-                giftwrappers = uint.Parse(Console.ReadLine());
-                typesOfPurchases = uint.Parse(Console.ReadLine());
-                typesOfGiftWrappers = uint.Parse(Console.ReadLine());
-
-                uint sum = 0;
+                int sum = 0;
                 sum += quantityPerPurcahse * typesOfPurchases * typesOfGiftWrappers * giftwrappers;
                 quantityPerPurcahse++;
                 typesOfPurchases++;
                 typesOfGiftWrappers++;
                 tests++;
             }
-            Console.ReadKey();
         }
     }
 }

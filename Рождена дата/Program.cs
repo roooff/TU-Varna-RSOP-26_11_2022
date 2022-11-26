@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 
-namespace Рождена_дата
+namespace Birth_Date
+
 {
     internal class Program
     {

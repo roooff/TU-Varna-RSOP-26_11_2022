@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace Комплекти
+namespace Complects
 {
     internal class Program
     {

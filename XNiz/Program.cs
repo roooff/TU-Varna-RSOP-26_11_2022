@@ -1,91 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
+using System.Diagnostics;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 
 namespace XNiz
 {
-    internal class Program
+    internal class GFG
     {
-        //char[] alpha = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
-        //    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-        //int test = int.Parse(Console.ReadLine());
-        //var alphabet = new List<char>(alpha);
-        //var nums = new List<int>();
-        //nums = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries)
-        //.Select(int.Parse).ToList();
+        private string str = string.Empty;
 
-        //var sb = new StringBuilder();
-        //string str = sb.ToString();
-        //for (int i = 0; i < test; i++)
-        //{
-        //    int chars = nums[0];
-        //    int place = nums[1];
-
-        //    for (int j = 0; j < chars; j++)
-        //    {
-        //        sb.Append(alpha[j]);
-        //    }
-
-        // C# program to print all
-
-        private class GFG
+        private static void permute(string str, int l, int r, List<string> list)
         {
-            /**
-            * permutation function
-            * @param str string to
-            calculate permutation for
-            * @param l starting index
-            * @param r end index
-            */
-            private string str = string.Empty;
-
-            private static void permute(string str, int l, int r)
+            if (l == r)
             {
-                List<string> list = new List<string>();
-                if (l == r)
-                    list.Add(str);
-                else
+                list.Add(str);
+            }
+            else
+            {
+                for (int i = l; i <= r; i++)
                 {
-                    for (int i = l; i <= r; i++)
-                    {
-                        str = swap(str, l, i);
-                        permute(str, l + 1, r);
-                        str = swap(str, l, i);
-                    }
+                    str = swap(str, l, i);
+                    permute(str, l + 1, r, list);
+                    str = swap(str, l, i);
                 }
-            }
-
-            /**
-            * Swap Characters at position
-            * @param a string value
-            * @param i position 1
-            * @param j position 2
-            * @return swapped string
-            */
-
-            public static String swap(String a, int i, int j)
-            {
-                char temp;
-                char[] charArray = a.ToCharArray();
-                temp = charArray[i];
-                charArray[i] = charArray[j];
-                charArray[j] = temp;
-                string s = new string(charArray);
-                return s;
-            }
-
-            // Driver Code
-            public static void Main()
-            {
-                String str = "ABC";
-                int n = str.Length;
-                permute(str, 0, n - 1);
             }
         }
 
-        // This code is contributed by mits
+        private static String swap(String a, int i, int j)
+        {
+            char temp;
+            char[] charArray = a.ToCharArray();
+            temp = charArray[i];
+            charArray[i] = charArray[j];
+            charArray[j] = temp;
+            string s = new string(charArray);
+            return s;
+        }
+
+        private static void Main()
+        {
+            int test = int.Parse(Console.ReadLine());
+            for (int e = 0; e < test; e++)
+            {
+                char[] alpha = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+                int[] num = Console.ReadLine().Split().Select(int.Parse).ToArray();
+
+                var sb = new StringBuilder();
+
+                int chars = num[0];
+                int place = num[1] - 1;
+
+                for (int j = 0; j < chars; j++)
+                {
+                    sb.Append(alpha[j]);
+                }
+
+                List<string> list = new List<string>();
+                string str = sb.ToString();
+                int n = str.Length;
+                permute(str, 0, n - 1, list);
+
+                list.Sort();
+
+                Console.WriteLine(list[place]);
+            }
+        }
     }
 }
